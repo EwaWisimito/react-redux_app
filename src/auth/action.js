@@ -1,14 +1,35 @@
-import { LOGIN, REGISTER_SUCCESS } from "./constants";
+import {  REGISTER_SUCCESS, REGISTER_REQUESTED, REGISTER_FAIL } from "./constants";
 
 
 
-export const register = (apiResponse) =>({
+export const registerUser = (formData) => {
+    return dispatch => {
+        dispatch(markLoading())
+        fetch('https://api-jfdzl2.herokuapp.com/api/v1/users/signup', {
+            method: 'POST',
+            body: JSON.stringify(formData)
+        })
+            .then(response => response.json())
+            .then(responseData => {
+                dispatch(populateUserData(responseData))
+            })
+            .catch(error => {
+                dispatch(markError())
+            })
+    }
+
+}
+export const populateUserData = (responseData) => ({
     type: REGISTER_SUCCESS,
-    data: apiResponse
+    user: responseData
 });
 
+export const markLoading = () => ({
+    type: REGISTER_REQUESTED
 
-export const login = () =>({
-    type: LOGIN,
-    
 });
+export const markError  = () => ({
+    type: REGISTER_FAIL
+
+});
+

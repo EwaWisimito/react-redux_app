@@ -9,31 +9,31 @@ class Register extends Component{
         lastName: '',
     }
 
-
-
     handleChange = (event) => {
-        this.setState({[event.target.name]: event.target.valu})
+        this.setState({[event.target.name]: event.target.value})
     }
+
     handelSubmit = (event) =>{
         event.preventDefault()
     }
+
     render(){
         return(
             <form>
                 <div>
-                    <input type="email" name="email" placeholder="E-maile" />
+                    <input type="email" name="email" placeholder="E-mail" onChange={this.handleChange} />
                 </div>
                 <div>
-                    <input type="password" name="password" placeholder="Password" />
+                    <input type="password" name="password" placeholder="Password" onChange={this.handleChange}/>
                 </div>
                 <div>
-                    <input type="text" name="first Name" placeholder="First Name" />
+                    <input type="text" name="firstName" placeholder="First Name" onChange={this.handleChange}/>
                 </div>
                 <div>
-                    <input type="text" name="last Name" placeholder="Last Name" />
+                    <input type="text" name="lastName" placeholder="Last Name" onChange={this.handleChange}/>
                 </div>
                 <div>
-                    <input type="submit"  value="Register me" />
+                    <input type="submit"  value="Register me" onChange={this.handleChange}/>
                 </div>
             </form>
         )
