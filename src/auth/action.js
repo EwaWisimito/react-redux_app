@@ -1,4 +1,4 @@
-import {  REGISTER_SUCCESS, REGISTER_REQUESTED, REGISTER_FAIL } from "./constants";
+import { REGISTER_SUCCESS, REGISTER_REQUESTED, REGISTER_FAIL } from "./constants";
 
 
 
@@ -7,7 +7,11 @@ export const registerUser = (formData) => {
         dispatch(markLoading())
         fetch('https://api-jfdzl2.herokuapp.com/api/v1/users/signup', {
             method: 'POST',
-            body: JSON.stringify(formData)
+            body: JSON.stringify(formData),
+            headers: {
+                'Accept': 'application / json',
+                'Content-Type': 'application/json'
+            }
         })
             .then(response => response.json())
             .then(responseData => {
@@ -28,7 +32,7 @@ export const markLoading = () => ({
     type: REGISTER_REQUESTED
 
 });
-export const markError  = () => ({
+export const markError = () => ({
     type: REGISTER_FAIL
 
 });
